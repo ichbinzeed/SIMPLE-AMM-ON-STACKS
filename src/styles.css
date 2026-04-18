@@ -1,0 +1,354 @@
+:root {
+  --bg: #07070b;
+  --bg-soft: #11111a;
+  --panel: rgba(19, 17, 31, 0.92);
+  --panel-2: rgba(34, 23, 56, 0.9);
+  --border: rgba(170, 92, 255, 0.25);
+  --text: #f5f3ff;
+  --muted: #bfb5d9;
+  --violet: #8b5cf6;
+  --violet-strong: #6d28d9;
+  --violet-soft: #c4b5fd;
+  --shadow: 0 20px 50px rgba(76, 29, 149, 0.28);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, "Segoe UI", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(
+      circle at top left,
+      rgba(139, 92, 246, 0.24),
+      transparent 0 28%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(109, 40, 217, 0.22),
+      transparent 0 24%
+    ),
+    linear-gradient(135deg, #050507 0%, #0c0b13 50%, #09090f 100%);
+}
+
+button {
+  border: 0;
+  border-radius: 14px;
+  padding: 0.9rem 1.1rem;
+  background: linear-gradient(
+    135deg,
+    var(--violet) 0%,
+    var(--violet-strong) 100%
+  );
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    opacity 0.18s ease;
+  box-shadow: 0 10px 24px rgba(109, 40, 217, 0.35);
+}
+
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 28px rgba(109, 40, 217, 0.42);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+button.secondary {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--violet-soft);
+  box-shadow: none;
+}
+
+.page-shell {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.hero-card,
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.hero-card {
+  display: grid;
+  grid-template-columns: 1.4fr 0.8fr;
+  gap: 1.25rem;
+  align-items: center;
+  padding: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.45rem;
+  color: var(--violet-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.78rem;
+}
+
+.hero-card h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+}
+
+.hero-copy {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  max-width: 58ch;
+  line-height: 1.6;
+}
+
+.status-panel {
+  background: var(--panel-2);
+  border: 1px solid rgba(196, 181, 253, 0.15);
+  border-radius: 18px;
+  padding: 1rem;
+}
+
+.status-label {
+  display: block;
+  margin-bottom: 0.45rem;
+  color: var(--violet-soft);
+  font-size: 0.85rem;
+}
+
+.status-indicator {
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.app-container {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  padding: 1.2rem;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.mint-card h2 {
+  margin: 1rem 0 0.35rem;
+}
+
+.helper-text {
+  margin: 0 0 1rem;
+  color: var(--muted);
+}
+
+.balance-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.balance-box {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding: 1rem;
+  border-radius: 18px;
+  background: linear-gradient(
+    180deg,
+    rgba(31, 24, 47, 0.95),
+    rgba(16, 14, 25, 0.95)
+  );
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.token-name {
+  color: var(--violet-soft);
+  font-size: 0.92rem;
+}
+
+.token-value {
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  font-weight: 800;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.pools-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.pool-card {
+  padding: 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(139, 92, 246, 0.18);
+  background: linear-gradient(
+    180deg,
+    rgba(24, 20, 36, 0.92),
+    rgba(14, 12, 22, 0.96)
+  );
+}
+
+.pool-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: start;
+  margin-bottom: 0.85rem;
+}
+
+.pool-top h3 {
+  margin: 0.45rem 0 0;
+}
+
+.pool-id,
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.pill {
+  background: rgba(139, 92, 246, 0.18);
+  color: var(--violet-soft);
+}
+
+.pool-id {
+  border: 1px solid rgba(196, 181, 253, 0.18);
+  color: var(--muted);
+}
+
+.pool-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.pool-stats div {
+  padding: 0.8rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.pool-stats span {
+  display: block;
+  color: var(--muted);
+  font-size: 0.82rem;
+  margin-bottom: 0.35rem;
+}
+
+.pool-stats strong {
+  font-size: 1rem;
+}
+
+.pool-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.form-card h3 {
+  margin-top: 0;
+}
+
+.form-grid {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.form-grid.two-columns {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.field span {
+  color: var(--violet-soft);
+  font-size: 0.88rem;
+}
+
+input,
+select {
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid rgba(139, 92, 246, 0.24);
+  background: rgba(8, 8, 12, 0.9);
+  color: var(--text);
+  padding: 0.85rem 0.95rem;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: var(--violet);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.16);
+}
+
+.empty-state {
+  margin: 0;
+  color: var(--muted);
+  padding: 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+@media (max-width: 780px) {
+  .hero-card {
+    grid-template-columns: 1fr;
+  }
+
+  .balance-grid,
+  .pool-actions-grid,
+  .pool-stats,
+  .form-grid.two-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .section-head,
+  .pool-top {
+    flex-direction: column;
+  }
+
+  .page-shell {
+    width: min(100% - 1rem, 1120px);
+    padding-top: 1rem;
+  }
+
+  .card,
+  .hero-card {
+    border-radius: 18px;
+  }
+}

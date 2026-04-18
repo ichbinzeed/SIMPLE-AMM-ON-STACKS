@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMM</title>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero-card">
+        <div>
+          <p class="eyebrow">Stacks AMM</p>
+          <h1>Panel de Minteo</h1>
+          <p class="hero-copy">
+            Conecta tu wallet, mintea tus tokens mock y consulta tus balances en
+            tiempo real.
+          </p>
+        </div>
+
+        <div class="status-panel">
+          <span class="status-label">Wallet</span>
+          <div id="addressInput" class="status-indicator">Disconnected</div>
+        </div>
+      </header>
+
+      <main class="app-container">
+        <section class="controls card">
+          <div id="auth-section" class="button-row">
+            <button id="btn-connect">Conectar Wallet</button>
+            <button id="btn-logout" style="display: none">Cerrar Sesión</button>
+          </div>
+        </section>
+
+        <section id="Minteos" class="card mint-card">
+          <div class="mint-actions button-row">
+            <button id="mintOne">Mintear mock-token</button>
+            <button id="mintTwo">Mintear mock-token-2</button>
+            <button id="refreshBalances" class="secondary">
+              Actualizar balances
+            </button>
+          </div>
+
+          <h2>Minteos</h2>
+          <p id="mintStatus" class="helper-text">
+            Conecta la wallet para ver tus balances.
+          </p>
+
+          <div class="balance-grid">
+            <article class="balance-box">
+              <span class="token-name">mock-token</span>
+              <span id="mock1" class="token-value">0</span>
+            </article>
+
+            <article class="balance-box">
+              <span class="token-name">mock-token-2</span>
+              <span id="mock2" class="token-value">0</span>
+            </article>
+          </div>
+        </section>
+
+        <section class="card pools-card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Liquidity</p>
+              <h2>Pools existentes</h2>
+            </div>
+            <p class="helper-text">
+              Se cargan desde el contrato AMM desplegado, no solo para un par
+              fijo.
+            </p>
+          </div>
+
+          <div id="poolsList" class="pools-list">
+            <p class="empty-state">Cargando pools...</p>
+          </div>
+        </section>
+
+        <section class="card pools-card">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Events</p>
+              <h2>Eventos del contrato</h2>
+            </div>
+            <p class="helper-text">
+              Se leen de los prints y logs recientes del AMM desplegado.
+            </p>
+          </div>
+
+          <div id="eventsList" class="pools-list">
+            <p class="empty-state">Cargando eventos...</p>
+          </div>
+        </section>
+
+        <section class="pool-actions-grid">
+          <article class="card form-card">
+            <h3>Crear nueva pool</h3>
+            <p class="helper-text">
+              Puedes usar cualquier par de tokens SIP-010.
+            </p>
+
+            <div class="form-grid">
+              <label class="field">
+                <span>Token 0 principal</span>
+                <input
+                  id="createToken0"
+                  type="text"
+                  value="ST1KQYEWGK8023G55G9JHSH8A3YHP3RNX6JJY1F9Q.mock-token"
+                />
+              </label>
+
+              <label class="field">
+                <span>Token 1 principal</span>
+                <input
+                  id="createToken1"
+                  type="text"
+                  value="ST1KQYEWGK8023G55G9JHSH8A3YHP3RNX6JJY1F9Q.mock-token-2"
+                />
+              </label>
+
+              <label class="field">
+                <span>Fee</span>
+                <input
+                  id="createPoolFee"
+                  type="number"
+                  min="1"
+                  step="1"
+                  value="500"
+                />
+              </label>
+            </div>
+
+            <button id="createPoolBtn">Crear pool</button>
+          </article>
+
+          <article class="card form-card">
+            <h3>Agregar liquidez</h3>
+            <p class="helper-text">
+              Selecciona una pool detectada en el contrato y añade liquidez.
+            </p>
+
+            <div class="form-grid two-columns">
+              <label class="field">
+                <span>Pool</span>
+                <select id="liquidityPoolSelect"></select>
+              </label>
+
+              <label class="field">
+                <span>Token 0 deseado</span>
+                <input
+                  id="amount0Desired"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="1000000"
+                />
+              </label>
+
+              <label class="field">
+                <span>Token 1 deseado</span>
+                <input
+                  id="amount1Desired"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="1000000"
+                />
+              </label>
+
+              <label class="field">
+                <span>Token 0 mínimo</span>
+                <input
+                  id="amount0Min"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </label>
+
+              <label class="field">
+                <span>Token 1 mínimo</span>
+                <input
+                  id="amount1Min"
+                  type="number"
+                  min="0"
+                  step="1"
+                  value="0"
+                />
+              </label>
+            </div>
+
+            <button id="addLiquidityBtn">Agregar liquidez</button>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

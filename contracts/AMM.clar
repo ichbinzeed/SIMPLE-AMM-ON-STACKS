@@ -6,6 +6,7 @@
 (define-constant MINIMUM_LIQUIDITY u1000) ;; minimum liquidity that must exist in a pool
 (define-constant THIS_CONTRACT (as-contract tx-sender)) ;; this contract
 (define-constant FEES_DENOM u10000) ;; fees denominator
+(define-constant EMPTY_POOL_ID 0x0000000000000000000000000000000000000000)
 
 ;; errors
 (define-constant ERR_POOL_ALREADY_EXISTS (err u200)) ;; pool already exists
@@ -39,6 +40,13 @@
     { liquidity: uint }
 )
 
+(define-map pool-index
+    { index: uint }
+    { pool-id: (buff 20) }
+)
+
+(define-data-var pool-count uint u0)
+
 ;; Compute the hash of (token0 + token1 + fee) to use as a pool ID
 (define-read-only (get-pool-id (pool-info {
     token-0: <ft-trait>,
@@ -50,6 +58,27 @@
             (pool-id (hash160 buff))
         )
         pool-id
+    )
+)
+
+(define-read-only (get-pool-count)
+    (ok (var-get pool-count))
+)
+
+(define-read-only (get-pool-id-by-index (index uint))
+    (let ((pool-ref (default-to { pool-id: EMPTY_POOL_ID }
+            (map-get? pool-index { index: index })
+        )))
+        (ok (get pool-id pool-ref))
+    )
+)
+
+(define-read-only (get-pool-by-index (index uint))
+    (let ((pool-id (unwrap! (get-pool-id-by-index index) (err u0))))
+        (if (is-eq pool-id EMPTY_POOL_ID)
+            (ok none)
+            (ok (map-get? pools pool-id))
+        )
     )
 )
 
@@ -91,6 +120,7 @@
             ;; Convert the <ft-trait> values into principals
             (token-0-principal (contract-of token-0))
             (token-1-principal (contract-of token-1))
+            (current-pool-index (var-get pool-count))
             ;; Prepare the pool-data tuple
             (pool-data {
                 token-0: token-0-principal,
@@ -111,8 +141,12 @@
 
         ;; Update the `pools` map with the new pool data
         (map-set pools pool-id pool-data)
+        (map-set pool-index { index: current-pool-index } { pool-id: pool-id })
+        (var-set pool-count (+ current-pool-index u1))
         (print {
             action: "create-pool",
+            index: current-pool-index,
+            pool-id: pool-id,
             data: pool-data,
         })
         (ok true)

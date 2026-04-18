@@ -46,6 +46,12 @@ This contract is inspired by Uniswap V2 and allows users to create liquidity poo
 | `u207` | Insufficient amount of token 1  |
 | `u208` | Insufficient amount of token 0  |
 
+## Demo
+
+![Crear Pool](images/1.jpg)
+![Agregar Liquidez](images/2.jpg)
+![Realizar Swap](images/3.jpg)
+
 ## Tech Stack
 
 - [Clarity](https://docs.stacks.co/clarity/overview) — Smart contract language

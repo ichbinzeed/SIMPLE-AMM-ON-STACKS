@@ -1,0 +1,42 @@
+id: 0
+name: Testnet deployment
+network: testnet
+stacks-node: https://api.testnet.hiro.so
+bitcoin-node: http://blockstack:blockstacksystem@bitcoind.testnet.stacks.co:18332
+plan:
+  batches:
+  - id: 0
+    transactions:
+    - transaction-type: requirement-publish
+      contract-id: SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard
+      remap-sender: ST1KQYEWGK8023G55G9JHSH8A3YHP3RNX6JJY1F9Q
+      remap-principals:
+        SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE: ST1KQYEWGK8023G55G9JHSH8A3YHP3RNX6JJY1F9Q
+      cost: 8400
+      path: .cache\requirements\SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.clar
+      clarity-version: 1
+    epoch: '2.0'
+  - id: 1
+    transactions:
+    - transaction-type: contract-publish
+      contract-name: AMM
+      expected-sender: ST1KQYEWGK8023G55G9JHSH8A3YHP3RNX6JJY1F9Q
+      cost: 184690
+      path: contracts/AMM.clar
+      anchor-block-only: true
+      clarity-version: 2
+    - transaction-type: contract-publish
+      contract-name: mock-token
+      expected-sender: ST1KQYEWGK8023G55G9JHSH8A3YHP3RNX6JJY1F9Q
+      cost: 11810
+      path: contracts/mock-token.clar
+      anchor-block-only: true
+      clarity-version: 2
+    - transaction-type: contract-publish
+      contract-name: mock-token-2
+      expected-sender: ST1KQYEWGK8023G55G9JHSH8A3YHP3RNX6JJY1F9Q
+      cost: 11810
+      path: contracts/mock-token.clar
+      anchor-block-only: true
+      clarity-version: 2
+    epoch: '3.4'
